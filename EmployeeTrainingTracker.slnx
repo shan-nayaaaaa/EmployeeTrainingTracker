@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="EmployeeTrainingTracker.csproj" />
+  <Project Path="EmployeeTrainingTracker/EmployeeTrainingTracker.csproj" />
+  <Project Path="FormsTrainingTracker/FormsTrainingTracker.csproj" />
+  <Project Path="TrainingTrackerBusinessLayer/TrainingTrackerBusinessLayer.csproj" />
+  <Project Path="TrainingTrackerDataLayer/TrainingTrackerDataLayer.csproj" />
 </Solution>

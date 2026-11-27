@@ -1,9 +1,21 @@
-﻿using System;
+using System;
 
 namespace EmployeeTrainingTracker
 {
     internal class Program
     {
+        // Reads a line safely (never returns null).
+        static string ReadText()
+        {
+            return Console.ReadLine() ?? "";
+        }
+
+        // Reads a menu choice; returns -1 for non-numeric input instead of crashing.
+        static int ReadChoice()
+        {
+            return int.TryParse(ReadText().Trim(), out int choice) ? choice : -1;
+        }
+
         static void Main(string[] args)
         {
             string trainees = "";
@@ -28,7 +40,7 @@ namespace EmployeeTrainingTracker
                 Console.WriteLine("----------------------------------");
 
                 Console.Write("Enter your choice: ");
-                traineeInfo = Convert.ToInt16(Console.ReadLine());
+                traineeInfo = ReadChoice();
 
                 if (traineeInfo == 1)
                 {
@@ -43,17 +55,17 @@ namespace EmployeeTrainingTracker
                         Console.WriteLine("(3) Exit");
                         Console.WriteLine("------------------------------------------------------------------");
 
-                        Console.WriteLine("Enter your choice: ");
-                        int traineeSelection = Convert.ToInt16(Console.ReadLine());
+                        Console.Write("Enter your choice: ");
+                        int traineeSelection = ReadChoice();
 
                         switch (traineeSelection)
                         {
 
                             case 1:
                                 Console.Write("Enter Trainee's Name: ");
-                                string traineeName = Console.ReadLine();
+                                string traineeName = ReadText();
                                 Console.Write("Enter Trainee's Position: ");
-                                string traineePosition = Console.ReadLine();
+                                string traineePosition = ReadText();
                                 trainees += $"Name: {traineeName}, Position: {traineePosition}\n";
                                 Console.WriteLine($"'{traineeName}' in '{traineePosition}' is Successfully added to the Trainee List.");
                                 // Saving the new trainee information to the list
@@ -64,7 +76,7 @@ namespace EmployeeTrainingTracker
                                 Console.WriteLine($"Name: {traineeName}, Position: {traineePosition}");
 
                                 Console.Write("Do you want to go back to Trainee Tab? (yes/no): ");
-                                string anotherTrainee = Console.ReadLine().ToLower();
+                                string anotherTrainee = ReadText().Trim().ToLower();
 
                                 if (anotherTrainee == "no")
                                 {
@@ -113,17 +125,17 @@ namespace EmployeeTrainingTracker
                         Console.WriteLine("------------------------------------------------------------------");
 
                         Console.Write("Enter your choice: ");
-                        int trainingSelection = Convert.ToInt16(Console.ReadLine());
+                        int trainingSelection = ReadChoice();
 
                         switch (trainingSelection)
                         {
                             case 1:
                                 Console.Write("Enter Training Name: ");
-                                string trainingName = Console.ReadLine();
+                                string trainingName = ReadText();
                                 Console.Write("Enter Date (MM/DD/YYYY): ");
-                                string trainingDate = Console.ReadLine();
+                                string trainingDate = ReadText();
                                 trainings += $"Training: {trainingName} (Date: {trainingDate})\n";
-                                Console.WriteLine($"'{trainingName}' by '{trainingDate}' is Successfully added to the Training List.");
+                                Console.WriteLine($"'{trainingName}' on '{trainingDate}' is Successfully added to the Training List.");
                                 // Saving the new training information to the list
 
                                 Console.WriteLine("---------------------------");
@@ -133,7 +145,7 @@ namespace EmployeeTrainingTracker
                                 
 
                                 Console.Write("Do you want to go back to Training Tab? (yes/no): ");
-                                string anotherTraining = Console.ReadLine().ToLower();
+                                string anotherTraining = ReadText().Trim().ToLower();
 
                                 if (anotherTraining == "no")
                                 {
@@ -182,7 +194,7 @@ namespace EmployeeTrainingTracker
                         Console.WriteLine("-------------------------------------------------------------------------");
 
                         Console.Write("Enter your choice: ");
-                        int statusSelection = Convert.ToInt16(Console.ReadLine());
+                        int statusSelection = ReadChoice();
 
 
                         switch (statusSelection)
@@ -190,11 +202,11 @@ namespace EmployeeTrainingTracker
 
                             case 1:
                                 Console.Write("Enter Trainee's Name: ");
-                                string traineeName2 = Console.ReadLine();
+                                string traineeName2 = ReadText();
                                 Console.Write("Enter Training Name: ");
-                                string trainingName2 = Console.ReadLine();
+                                string trainingName2 = ReadText();
                                 Console.Write("Enter Training Status: ");
-                                string statusInput = Console.ReadLine();
+                                string statusInput = ReadText();
                                 status += $"Trainee: {traineeName2}, Training: {trainingName2}, Status: {statusInput}\n";
                                 Console.WriteLine($"'{traineeName2}' in '{trainingName2}' ('{statusInput}') is Successfully added to Training Status List.");
                                 // Here you can add code to update the training status
@@ -206,7 +218,7 @@ namespace EmployeeTrainingTracker
                                 
 
                                 Console.Write("Do you want to go back to Training Status Tab? (yes/no): ");
-                                string anotherTraining = Console.ReadLine().ToLower();
+                                string anotherTraining = ReadText().Trim().ToLower();
 
                                 if (anotherTraining == "no")
                                 {
@@ -240,26 +252,13 @@ namespace EmployeeTrainingTracker
                         }
                     }
                 }
-
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine("|    Employee Training Tracker    |");
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine("Please Choose a Task to Perform (1-4): ");
-                Console.WriteLine("(1) Trainees");
-                Console.WriteLine("(2) Trainings");
-                Console.WriteLine("(3) Training Status");
-                Console.WriteLine("(4) Exit");
-                Console.WriteLine("----------------------------------");
-
-                Console.Write("Enter your choice: ");
-                traineeInfo = Convert.ToInt16(Console.ReadLine());
-
+                else if (traineeInfo != 4)
+                {
+                    Console.WriteLine("Invalid choice. Please try again.");
+                }
             }
 
-            
-
-
-
+            Console.WriteLine("Thank you for using the Employee Training Tracker!");
         }
     }
 }
